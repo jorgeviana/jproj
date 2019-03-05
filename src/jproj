@@ -1,0 +1,21 @@
+#!/bin/bash
+
+ARTIFACT=$(artifact "$1")
+GROUP=$(group "$2")
+
+mvn archetype:generate \
+-DgroupId="$GROUP" \
+-DartifactId="$ARTIFACT" \
+\
+-DarchetypeGroupId=com.thepracticaldeveloper \
+-DarchetypeArtifactId=archetype-java-basic-tpd \
+-DarchetypeVersion=1.0.0 \
+-DinteractiveMode=false
+
+cd "$ARTIFACT" || exit
+
+printf "# %s" "$ARTIFACT" >> README.md
+printf ".idea\n*.iml\ntarget\n" >> .gitignore
+git init
+git add .
+git commit -m "initial commit"

@@ -1,0 +1,9 @@
+@test "group default" {
+  result=$(src/group)
+  [ "$result" == "io.github.jorgeviana" ]
+}
+
+@test "group provided" {
+  result=$(src/group my-group)
+  [ "$result" == "my-group" ]
+}

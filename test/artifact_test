@@ -1,0 +1,9 @@
+@test "artifact default" {
+  result=$(src/artifact)
+  [ "$result" == "TILT" ]
+}
+
+@test "artifact provided" {
+  result=$(src/artifact my-artifact)
+  [ "$result" == "my-artifact" ]
+}
