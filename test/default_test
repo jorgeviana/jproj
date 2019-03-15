@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC1091
+source "default"
+
+@test "default function empty arg" {
+  result=$(default)
+  [ "$result" == "" ]
+}
+
+@test "default function not empty arg" {
+  result=$(default "NOT_EMPTY")
+  [ "$result" == "NOT_EMPTY" ]
+}

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+setup() {
+  TEMP=$(mktemp -d)
+  cd "$TEMP" || exit
+}
+
+teardown() {
+  rm -rf "$TEMP"
+}
+
+assert_java_proj_dir() {
+
+  DIR=$1
+
+  [ -s "$TEMP/$DIR/pom.xml" ]
+  [ -s "$TEMP/$DIR/README.md" ]
+
+  [ -d "$TEMP/$DIR/.git" ]
+  [ -d "$TEMP/$DIR/src/main/java" ]
+  [ -d "$TEMP/$DIR/src/test/java" ]
+}
+
+
+@test "when no parameter is passed the TILT directory is created" {
+
+  jproj ""
+
+  assert_java_proj_dir "TILT"
+}
+
+@test "creates a java project in the directory chosen by the user" {
+
+  jproj "my-artifact-id"
+
+  assert_java_proj_dir "my-artifact-id"
+}

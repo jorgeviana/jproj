@@ -1,1 +1,3 @@
-watchman-make -p 'src/**/*' 'test/**/*' -r './build'
+#!/bin/bash
+
+watchman-make -p 'src/**/*' 'test/**/*' -r './run_fast_tests'

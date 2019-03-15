@@ -1,7 +1,10 @@
 #!/bin/bash
 
-if [ "$1" == "" ]; then
-  echo "io.github.jorgeviana"
-else
-  echo "$1"
-fi
+# shellcheck disable=SC1091
+source "default"
+
+default "$1" "io.github.jorgeviana"
+#if_not_empty_otherwise "$1" "io.github.jorgeviana"
+
+
+
